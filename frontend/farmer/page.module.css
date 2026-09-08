@@ -1,0 +1,33 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7faf7;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.card {
+  width: 100%;
+  max-width: 700px;
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.label {
+  color: #2d8a49;
+  font-weight: 700;
+}
+
+.card h1 {
+  margin-top: 0;
+  color: #1d3829;
+}
+
+.card ul {
+  line-height: 2rem;
+  color: #425742;
+}

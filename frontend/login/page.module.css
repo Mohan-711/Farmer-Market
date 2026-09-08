@@ -1,0 +1,47 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f4f7f5;
+  font-family: Arial, sans-serif;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: white;
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.card h1 {
+  text-align: center;
+  margin-top: 0;
+  color: #1d3829;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form input,
+.form button {
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.form input {
+  border: 1px solid #d9e0d9;
+}
+
+.form button {
+  border: none;
+  background: #2d8a49;
+  color: white;
+  cursor: pointer;
+}

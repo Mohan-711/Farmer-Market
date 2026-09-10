@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgriLink — Company Dashboard</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 24 24" fill="none"><path d="M12 2C7 6 4 10 4 14a8 8 0 0016 0c0-4-3-8-8-12z" fill="currentColor"/></svg>
+      <div>
+        <div class="brand-name">AgriLink</div>
+        <div class="brand-tag">Connecting Farms to Markets</div>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-avatar" id="companyAvatar">—</div>
+      <div>
+        <div class="company-name" id="companyName">Loading…</div>
+        <div class="company-role" id="companyRole">&nbsp;</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a href="#overview" class="nav-link active" data-section="overview">Dashboard</a>
+      <a href="#available-crops" class="nav-link" data-section="available-crops">Available Crops</a>
+      <a href="#my-offers" class="nav-link" data-section="my-offers">My Offers</a>
+      <a href="#accepted-purchases" class="nav-link" data-section="accepted-purchases">Accepted Purchases</a>
+      <a href="#inventory" class="nav-link" data-section="inventory">Inventory</a>
+      <a href="#sell-to-buyers" class="nav-link" data-section="sell-to-buyers">Sell to Buyers</a>
+      <a href="#transactions" class="nav-link" data-section="transactions">Transactions</a>
+      <a href="#complaints" class="nav-link" data-section="complaints">Complaints</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="footer-line">Source Sustainably</div>
+      <div class="footer-line strong">Grow Together</div>
+      <p class="footer-copy">Better Crops. Better Business. A Greener Tomorrow.</p>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <header class="topbar">
+      <button class="icon-btn" id="menuToggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/><path d="M21 21l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input type="text" placeholder="Search for crops, farmers, offers, or transactions…">
+      </div>
+      <button class="icon-btn bell" id="notifBtn" aria-label="Notifications">
+        <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="M13.7 21a2 2 0 01-3.4 0" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        <span class="badge" id="notifCount">0</span>
+      </button>
+      <div class="topbar-company">
+        <div class="company-avatar small" id="topAvatar">—</div>
+        <div>
+          <div class="topbar-company-name" id="topCompanyName">—</div>
+          <div class="topbar-company-sub">Company</div>
+        </div>
+      </div>
+    </header>
+
+    <div id="statusBanner" class="status-banner hidden"></div>
+
+    <section class="welcome">
+      <div>
+        <h1 id="welcomeHeading">Welcome back!</h1>
+        <p>Discover quality produce, build strong partnerships, and grow your business.</p>
+      </div>
+      <div class="welcome-date" id="todayDate"></div>
+    </section>
+
+    <section class="stats-grid" id="overview" aria-label="Overview">
+      <div class="stat-card">
+        <div class="stat-icon leaf"></div>
+        <div class="stat-value" id="statAvailableCrops">—</div>
+        <div class="stat-label">Available Crops</div>
+        <div class="stat-sub" id="statAvailableCropsSub">&nbsp;</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon doc"></div>
+        <div class="stat-value" id="statOffersSent">—</div>
+        <div class="stat-label">Offers Sent</div>
+        <div class="stat-sub" id="statOffersSentSub">&nbsp;</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon box"></div>
+        <div class="stat-value" id="statPurchased">—</div>
+        <div class="stat-label">Purchased Crops</div>
+        <div class="stat-sub" id="statPurchasedSub">&nbsp;</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon home"></div>
+        <div class="stat-value" id="statInventory">—</div>
+        <div class="stat-label">Inventory Stock</div>
+        <div class="stat-sub" id="statInventorySub">&nbsp;</div>
+      </div>
+    </section>
+
+    <section class="grid-row three">
+      <div class="panel wide" id="available-crops">
+        <div class="panel-head">
+          <h2>Available Crops from Farmers</h2>
+          <a href="#" class="view-all" data-view-all="crops">View All →</a>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Crop</th><th>Farmer</th><th>Location</th><th>Quantity</th><th>Expected Price</th><th>Action</th></tr>
+            </thead>
+            <tbody id="cropsTableBody">
+              <tr class="empty-row"><td colspan="6">Loading crops…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel" id="makeOfferPanel">
+        <div class="panel-head"><h2>Make Offer</h2></div>
+        <div id="offerFormContainer" class="offer-empty">
+          <p>Select "Make Offer" on any crop to get started.</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h2>Quick Actions</h2></div>
+        <div class="quick-actions">
+          <button class="quick-action" data-action="pickup">
+            <span>Request Pickup</span><span class="chev">›</span>
+          </button>
+          <button class="quick-action" data-action="inventory">
+            <span>View Inventory</span><span class="chev">›</span>
+          </button>
+          <button class="quick-action" data-action="sell">
+            <span>Sell to Buyers</span><span class="chev">›</span>
+          </button>
+          <button class="quick-action" data-action="complaint">
+            <span>Raise Complaint</span><span class="chev">›</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-row three">
+      <div class="panel" id="my-offers">
+        <div class="panel-head">
+          <h2>My Offers</h2>
+          <a href="#" class="view-all" data-view-all="offers">View All →</a>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Crop</th><th>Offer Price</th><th>Farmer</th><th>Date</th><th>Status</th></tr></thead>
+            <tbody id="offersTableBody"><tr class="empty-row"><td colspan="5">Loading offers…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel" id="accepted-purchases">
+        <div class="panel-head">
+          <h2>Accepted Purchases</h2>
+          <a href="#" class="view-all" data-view-all="purchases">View All →</a>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Crop</th><th>Quantity</th><th>Purchase Price</th><th>Verification</th></tr></thead>
+            <tbody id="purchasesTableBody"><tr class="empty-row"><td colspan="4">Loading purchases…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel" id="inventory">
+        <div class="panel-head">
+          <h2>Inventory Stock</h2>
+          <a href="#" class="view-all" data-view-all="inventory">View All →</a>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Crop</th><th>Purchased</th><th>Available</th><th>Purchase Price</th></tr></thead>
+            <tbody id="inventoryTableBody"><tr class="empty-row"><td colspan="4">Loading inventory…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-row three">
+      <div class="panel" id="sell-to-buyers">
+        <div class="panel-head">
+          <h2>Sell to Buyers</h2>
+          <a href="#" class="view-all" data-view-all="sell">View All →</a>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Crop</th><th>Available Stock</th><th>Selling Price</th><th>Action</th></tr></thead>
+            <tbody id="sellTableBody"><tr class="empty-row"><td colspan="4">Loading listings…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel" id="transactions">
+        <div class="panel-head">
+          <h2>Transactions</h2>
+          <a href="#" class="view-all" data-view-all="transactions">View All →</a>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>ID</th><th>Type</th><th>Crop</th><th>Amount</th><th>Status</th></tr></thead>
+            <tbody id="transactionsTableBody"><tr class="empty-row"><td colspan="5">Loading transactions…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel" id="complaints">
+        <div class="panel-head">
+          <h2>Recent Complaints</h2>
+          <a href="#" class="view-all" data-view-all="complaints">View All →</a>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>ID</th><th>Type</th><th>Status</th></tr></thead>
+            <tbody id="complaintsTableBody"><tr class="empty-row"><td colspan="3">Loading complaints…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Modal (Request Pickup / Raise Complaint) -->
+<div class="modal-backdrop hidden" id="modalBackdrop">
+  <div class="modal" id="modalBody"></div>
+</div>
+
+<script src="company.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

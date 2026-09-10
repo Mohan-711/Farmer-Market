@@ -42,7 +42,7 @@ export async function mockLogin(
       ? 'buyer'
       : email.includes('company')
         ? 'company'
-        : email.includes('gov')
+        : email.includes('gov') || email.includes('government')
           ? 'government'
           : 'logistics';
 
@@ -51,14 +51,14 @@ export async function mockLogin(
     message: 'Login successful',
     redirectTo:
       role === 'farmer'
-        ? '/dashboard/farmer'
+        ? '/farmer'
         : role === 'buyer'
-          ? '/dashboard/buyer'
+          ? '/buyer'
           : role === 'company'
-            ? '/dashboard/company'
+            ? '/company'
             : role === 'government'
-              ? '/dashboard/government'
-              : '/dashboard/logistics',
+              ? '/government'
+              : '/logistics',
   };
 }
 

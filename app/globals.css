@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --agri-green-50: #f2faf4;
+  --agri-green-100: #e5f4ec;
+  --agri-green-200: #cae7d3;
+  --agri-green-300: #acd9b9;
+  --agri-green-400: #7ec896;
+  --agri-green-500: #4caf72;
+  --agri-green-600: #0f7b4a;
+  --agri-green-700: #0b5d3d;
+  --agri-green-800: #0d4635;
+  --agri-green-900: #0a3329;
+  --agri-gold-500: #f2be5c;
+  --agri-surface: #f7faf5;
+  --agri-text: #1d2b26;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #f4f8f2;
+  color: var(--agri-text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+a {
+  transition: all 0.2s ease;
+}
+
+.field-gradient {
+  background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(15,90,61,0.2));
+}
+
+.hero-visual {
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.8), rgba(255,255,255,0) 45%),
+    linear-gradient(135deg, rgba(226, 247, 233, 0.9), rgba(161, 211, 180, 0.7) 45%, rgba(115, 182, 127, 0.8));
+}
+
+.feature-card {
+  box-shadow: 0 10px 30px rgba(14, 77, 53, 0.08);
+}
+
+.soft-shadow {
+  box-shadow: 0 18px 30px rgba(15, 90, 61, 0.08);
+}
+
+.text-balance {
+  text-wrap: balance;
+}

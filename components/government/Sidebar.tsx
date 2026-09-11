@@ -1,21 +1,24 @@
+'use client';
+
 import Link from 'next/link';
-import { Building2, FileBarChart2, FileText, Flag, House, BellRing, ShieldCheck, Settings, Siren, Sprout, Users, WalletCards, BarChart3, TriangleAlert, BadgeCheck, ChevronRight } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { BarChart3, BellRing, Building2, FileText, House, ShieldCheck, Sprout, TriangleAlert, Users, WalletCards } from 'lucide-react';
 
 const navItems = [
-  { label: 'Dashboard', href: '#', active: true, icon: House },
-  { label: 'Transactions', href: '#', active: false, icon: FileText },
-  { label: 'Farmers', href: '#', active: false, icon: Users },
-  { label: 'Companies', href: '#', active: false, icon: Building2 },
-  { label: 'Price Monitoring', href: '#', active: false, icon: WalletCards },
-  { label: 'Complaints', href: '#', active: false, icon: TriangleAlert },
-  { label: 'Analytics', href: '#', active: false, icon: BarChart3 },
-  { label: 'Notifications', href: '#', active: false, icon: BellRing },
-  { label: 'Company Verification', href: '#', active: false, icon: ShieldCheck },
-  { label: 'Reports', href: '#', active: false, icon: FileBarChart2 },
-  { label: 'Settings', href: '#', active: false, icon: Settings },
+  { label: 'Dashboard', href: '/government', icon: House },
+  { label: 'Transactions', href: '/government/transactions', icon: FileText },
+  { label: 'Farmers', href: '/government/farmers', icon: Users },
+  { label: 'Companies', href: '/government/companies', icon: Building2 },
+  { label: 'Price Monitoring', href: '/government/price-monitoring', icon: WalletCards },
+  { label: 'Complaints', href: '/government/complaints', icon: TriangleAlert },
+  { label: 'Analytics', href: '/government/analytics', icon: BarChart3 },
+  { label: 'Notifications', href: '/government/notifications', icon: BellRing },
+  { label: 'Company Verification', href: '/government/company-verification', icon: ShieldCheck },
 ];
 
 export function Sidebar() {
+  const pathname = usePathname();
+
   return (
     <aside className="flex h-screen w-[280px] flex-col border-r border-[#dfe6df] bg-[#f3f6f3] px-4 py-4">
       <div className="mb-5 flex items-center gap-3 px-2 pt-2">
@@ -29,23 +32,27 @@ export function Sidebar() {
       </div>
 
       <nav className="space-y-1.5 px-1 pb-3">
-        {navItems.map(({ label, href, active, icon: Icon }) => (
-          <Link
-            key={label}
-            href={href}
-            className={[
-              'flex items-center gap-3 rounded-xl px-3 py-3 text-[0.98rem] font-medium transition',
-              active
-                ? 'bg-[#0f7b4a] text-white shadow-md shadow-green-700/20'
-                : 'text-slate-700 hover:bg-white hover:text-[#0f7b4a]',
-            ].join(' ')}
-          >
-            <span className={active ? 'text-white' : 'text-slate-600'}>
-              <Icon className="h-4 w-4" />
-            </span>
-            <span>{label}</span>
-          </Link>
-        ))}
+        {navItems.map(({ label, href, icon: Icon }) => {
+          const active = pathname === href || (href === '/government' && pathname.startsWith('/government') && !['/government/transactions', '/government/farmers', '/government/companies', '/government/price-monitoring', '/government/complaints', '/government/analytics', '/government/notifications', '/government/company-verification'].includes(pathname));
+
+          return (
+            <Link
+              key={label}
+              href={href}
+              className={[
+                'flex items-center gap-3 rounded-xl px-3 py-3 text-[0.98rem] font-medium transition',
+                active
+                  ? 'bg-[#0f7b4a] text-white shadow-md shadow-green-700/20'
+                  : 'text-slate-700 hover:bg-white hover:text-[#0f7b4a]',
+              ].join(' ')}
+            >
+              <span className={active ? 'text-white' : 'text-slate-600'}>
+                <Icon className="h-4 w-4" />
+              </span>
+              <span>{label}</span>
+            </Link>
+          );
+        })}
       </nav>
 
       <div className="mt-auto overflow-hidden rounded-[26px] border border-[#d9e7db] bg-gradient-to-b from-[#edf7ee] to-[#dfece1] p-3 shadow-inner">

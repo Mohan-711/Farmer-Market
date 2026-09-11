@@ -36,6 +36,17 @@ export function LoginForm() {
     const result = await mockLogin(values.email, values.password);
     setIsSubmitting(false);
     if (result.ok) {
+      const role = values.email.toLowerCase().includes('gov') || values.email.toLowerCase().includes('government') ? 'government' : 'user';
+      localStorage.setItem('agri_token', `mock-token-${Date.now()}`);
+      localStorage.setItem('agri_role', role);
+      localStorage.setItem(
+        'agri_user',
+        JSON.stringify({
+          email: values.email,
+          name: role === 'government' ? 'karnataka Government' : 'AgriLink User',
+          role,
+        }),
+      );
       router.push(result.redirectTo);
       return;
     }
